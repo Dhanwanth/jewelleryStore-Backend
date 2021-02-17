@@ -27,6 +27,13 @@ namespace JewelleryStoreBackend.Controllers
             return await _context.Users.ToListAsync();
         }
 
+        // GET: dummy authentication
+        [HttpGet("User={userName}&Password={passWord}")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers(string userName,string passWord)
+        {
+            return await _context.Users.Where(x=> x.UserName == userName && x.Password == passWord).ToListAsync();
+        }
+
         // GET: api/User/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
